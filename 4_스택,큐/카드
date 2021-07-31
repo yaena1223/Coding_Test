@@ -1,0 +1,27 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+public class 카드 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		Queue<Integer>queue = new LinkedList<Integer>();
+		int n = sc.nextInt();
+		for(int i = 1;i<=n;i++) {
+			queue.offer(i);
+		}
+
+		while(queue.size()>1) {
+			queue.poll();
+			int x = queue.poll();
+			queue.offer(x);
+		}
+		
+		int ans = queue.peek();
+		System.out.println(ans);
+	}
+
+}
