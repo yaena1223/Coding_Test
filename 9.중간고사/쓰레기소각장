@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class 쓰레기소각장{
+
+    public static void main(String[] args)throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        Queue<Long> queue = new LinkedList<>();
+        
+        int n = Integer.parseInt(st.nextToken());
+        int l = Integer.parseInt(st.nextToken());
+
+        
+        long sum = 0;
+        long ans = 0;
+        for(int i = 0;i<n;i++) {
+            long num = Long.parseLong(br.readLine());
+    
+            sum = sum+num;
+            queue.offer(num);
+
+            while(queue.peek()<=(sum-l)) {
+                long a = queue.poll();
+                ans = ans+a;
+                sum = sum-a;
+                if(queue.isEmpty())break;
+            
+            
+        }
+                
+        }
+        System.out.println(ans);
+    }
+
+}
