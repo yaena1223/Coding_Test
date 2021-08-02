@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class 데칼코마니 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		int a = sc.nextInt();
+		int b = sc.nextInt();
+		char [][] array = new char[a][b];
+		char decal [][] = new char[a*2][b*2];
+		for(int i = 0;i<a;i++) {
+			String line = sc.next();
+			for(int j = 0;j<b;j++) {
+				array[i][j] = line.charAt(j);
+			}
+		}
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+		for(int i = 0;i<a;i++) {
+			for(int j = 0;j<b;j++) {
+				decal[i][j] = array[i][j];
+					decal[i][2*b-1-j] = array[i][j];
+					decal[2*a-1-i][j] = array[i][j];
+					decal[2*a-1-i][2*b-1-j] = array[i][j];
+				}
+			}
+		
+		if(decal[x-1][y-1]=='.') decal[x-1][y-1] = '#';
+		else decal[x-1][y-1]='.';
+		for(int i = 0;i<2*a;i++) {
+			for(int j = 0;j<2*b;j++) {
+			 System.out.print(decal[i][j]);
+			}
+			System.out.println();
+		}
+	}
+
+}
