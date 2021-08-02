@@ -1,0 +1,42 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class 메세지전달하기 {
+
+	static ArrayList<ArrayList<Integer>>Graphlist;
+	static boolean visited[];
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		Graphlist= new ArrayList<ArrayList<Integer>>();
+		visited = new boolean[n+1];
+		int cnt = 0;
+		for(int i = 0 ;i<=n;i++) {
+			Graphlist.add(new ArrayList<Integer>());
+		}
+		for(int i = 1;i<n+1;i++) {
+			int num = sc.nextInt();
+			Graphlist.get(i).add(num);
+			Graphlist.get(num).add(i);
+		}
+		
+		for(int i : Graphlist.get(0)) {
+			dfs(i);
+		}
+		for(int i = 1;i<=n;i++) {
+			if(visited[i]==true) cnt++;
+			
+		}
+		System.out.println(cnt);
+		
+	}
+
+	static void dfs(int x) {
+		visited[x] = true;
+		for(int i : Graphlist.get(x)) {
+			if(visited[i]==false)dfs(i);
+		}
+	}
+}
