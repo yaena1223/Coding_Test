@@ -1,0 +1,56 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class 미로탐험 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st ;
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		int [][] dist = new int[n+1][m+1];
+		int [][] array = new int[n+1][m+1];
+		for(int i = 1;i<=n;i++) {
+			for(int j = 1;j<=n;j++) dist[i][j]=0;
+		}
+		dist[1][1]=1;
+		for(int i = 1;i<=n;i++) {
+			String s = br.readLine();
+			for(int j = 1;j<=m;j++) {
+				array[i][j] = Integer.parseInt(s.substring(j-1,j));
+			}
+		}
+		Queue<Integer[]> queue= new LinkedList<>();
+		queue.offer(new Integer[] {1,1});
+		int [] dx = {0,0,-1,1};
+		int [] dy = {1,-1,0,0};
+		
+		while(!queue.isEmpty()) {
+			Integer[]tmp = queue.poll();
+			int x = tmp[0];int y = tmp[1];
+			for(int i = 0;i<4;i++) {
+				int new_x = x+dx[i];
+				int new_y = y+dy[i];
+				if(new_x<1||new_y<1||new_x>n||new_y>m) 
+					continue;
+				if(array[new_x][new_y]==1 && dist[new_x][new_y]==0) {
+					dist[new_x][new_y]=dist[x][y]+1;
+					queue.offer(new Integer[] {new_x,new_y});
+				}
+			}
+		}
+		if(dist[n][m]==0) {
+			System.out.println(-1);
+		}
+		else System.out.println(dist[n][m]);
+	}
+
+}
+	
