@@ -1,0 +1,67 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
+
+public class DFS와BFS {
+
+	static ArrayList<ArrayList<Integer>>Graphlist;
+	static boolean visited[];
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st ;
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		int v = Integer.parseInt(st.nextToken());
+		visited = new boolean[n+1];
+		Graphlist = new ArrayList<ArrayList<Integer>>();
+		for(int i = 0 ;i<=n;i++) {
+			Graphlist.add(new ArrayList<Integer>());
+		}
+		for(int i =0;i<m;i++) {
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b= Integer.parseInt(st.nextToken());
+			Graphlist.get(a).add(b);
+			Graphlist.get(b).add(a);
+		}
+		for(int i = 1;i<=n;i++) {
+			Collections.sort(Graphlist.get(i));
+		}
+		dfs(v);
+		System.out.println();
+		
+		Queue<Integer> queue = new LinkedList<>();
+		visited = new boolean[n+1];
+		queue.offer(v);
+		visited[v] = true;
+		while(!queue.isEmpty()) {
+			int x = queue.poll();
+			System.out.print(x+" ");
+			for(int y : Graphlist.get(x)) {
+				if(visited[y]==false) {
+					queue.offer(y);
+					visited[y] = true;
+					
+				}
+			}
+			 
+		}
+	}
+	static void dfs(int x) {
+		visited[x] = true;
+		System.out.print(x+" ");
+		for(int i : Graphlist.get(x)) {
+			if(!visited[i]) dfs(i);
+		}
+		
+	}
+
+}
