@@ -1,0 +1,52 @@
+package 이분탐색;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class counting_haybales {
+
+	
+	public static void main(String[] args)throws IOException {
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int q = Integer.parseInt(st.nextToken());
+		int [] array = new int[n];
+		st = new StringTokenizer(br.readLine());
+		for(int i = 0;i<n;i++) {
+			array[i] = Integer.parseInt(st.nextToken());
+		}
+		Arrays.sort(array);
+		for(int i = 0;i<q;i++) {
+			st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
+			int l = 0; int r = n;
+			while(l<r) {
+				int mid = (l+r)/2;
+				if(array[mid]<a) l = mid+1;
+				else r = mid;
+			
+			}
+			int a_l = l;
+			l = 0; r = n;
+			while(l<r) {
+				int mid = (l+r)/2;
+				if(array[mid]<=b) l = mid+1;
+				else r = mid;
+			
+			}
+			int b_l = l;
+			if(a<=array[0]&&b>=array[n-1]) System.out.println(n);
+			else System.out.println(b_l-a_l);
+		}
+	
+	}
+
+}
