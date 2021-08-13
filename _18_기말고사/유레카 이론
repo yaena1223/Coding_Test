@@ -1,0 +1,46 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class 유레카이론 {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in)) ;
+		int t = Integer.parseInt(br.readLine());
+		int [] array = new int [t];
+		for(int i = 0;i<t;i++) {
+			int n = Integer.parseInt(br.readLine());
+			array[i] = n;
+		}
+		
+		int n2 = 1;
+		int array2[]= new int[44];
+		int cnt = 0;
+		while(n2<=1000) {
+			array2[cnt++] = n2;
+			n2= n2+(cnt+1);
+		}
+
+		boolean tf [] = new boolean[t];
+		for(int i = 0;i<t;i++) {
+			for(int j = 0;j<44;j++) {
+				for(int k = 0;k<44;k++) {
+					for(int z = 0;z<44;z++) {
+						if(array2[j]+array2[k]+array2[z]==array[i]) {
+							tf[i] = true;
+				
+						}
+
+					}
+				}
+			}
+		}
+		for(int i = 0 ;i<t;i++) {
+			if(tf[i]) System.out.println(1);
+			else System.out.println(0);
+		}
+	}
+
+}
