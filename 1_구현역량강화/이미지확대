@@ -1,0 +1,46 @@
+package 복습;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class 이미지확대 {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		st = new StringTokenizer(br.readLine());
+		int n= Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		char [][]array = new char[n][m];
+		
+		for(int i = 0;i<n;i++) {
+			String line = br.readLine();
+			for(int j = 0;j<m;j++) {
+				char c = line.charAt(j);
+				array[i][j] = c;
+			}
+		}
+		int num = Integer.parseInt(br.readLine());
+		char [][]array2 = new char[n*num][m*num];
+		
+		for(int i = 0;i<n;i++) {
+			for(int j = 0;j<num*m;j++) {
+				array2[i][j] = array[i][j/num];
+			}
+		}
+		
+		for(int i = 0;i<n;i++) {
+			for(int z = 0;z<num;z++) {
+				for(int j = 0;j<num*m;j++) {
+					System.out.print(array2[i][j]);
+				}
+				System.out.println();
+			}
+		}
+	}
+
+}
