@@ -1,0 +1,41 @@
+package 복습;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class _2_3장으로하는블랙잭 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int []array = new int[n];
+		int m = Integer.parseInt(st.nextToken());
+		st = new StringTokenizer(br.readLine());
+		for(int i = 0;i<n;i++) {
+			array[i] = Integer.parseInt(st.nextToken());
+		}
+	
+		int max = 0;
+		int total;
+		for(int i = 0;i<n;i++) {
+			for(int j = 0;j<n;j++) {
+				for(int z = 0;z<n;z++) {
+					if(i==j||i==z||j==z)continue;
+					else{
+						total = array[i]+array[j]+array[z];
+						if(total>max&&total<=m)max = total;
+					}
+				}
+			}
+		}
+		System.out.println(max);
+		
+	}
+
+}
