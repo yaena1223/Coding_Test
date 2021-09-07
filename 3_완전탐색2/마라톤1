@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class 마라톤1 {
+
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		
+		int n = Integer.parseInt(br.readLine());
+		int [][] array = new int[n][2];
+		
+		for(int i = 0;i<n;i++) {
+			st = new StringTokenizer(br.readLine());
+			array[i][0] = Integer.parseInt(st.nextToken());
+			array[i][1] = Integer.parseInt(st.nextToken());
+		}
+		int dist_x = 0 , dist_y = 0, dist = 0;
+		int [] dist_array = new int[n];
+		int sum = 0;
+		for(int i = 0;i<n-1;i++) {
+			dist_x = Math.abs(array[i+1][0]-array[i][0]);
+			dist_y = Math.abs(array[i+1][1]-array[i][1]);
+			dist = dist_x + dist_y;
+			dist_array[i] = dist;
+			sum = sum+dist;
+		}
+		
+		int min = sum;
+		for(int i = 1;i<n-1;i++) {
+			int sum2 = sum;
+			int x1 = Math.abs(array[i-1][0]-array[i][0]);
+			int y1 = Math.abs(array[i-1][1]-array[i][1]);
+			int x2 = Math.abs(array[i+1][0]-array[i][0]);
+			int y2 = Math.abs(array[i+1][1]-array[i][1]);
+			int x3 = Math.abs(array[i+1][0]-array[i-1][0]);
+			int y3 = Math.abs(array[i+1][1]-array[i-1][1]);
+			int xy = x1+y1+x2+y2-x3-y3;
+			sum2 = sum2-xy;
+			if(sum2<min) min = sum2;
+		}
+		System.out.println(min);
+	}
+
+}
