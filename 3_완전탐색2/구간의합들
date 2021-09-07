@@ -1,0 +1,36 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class 구간의합들 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int array[] = new int[n];
+		int m = Integer.parseInt(st.nextToken());
+		st = new StringTokenizer(br.readLine());
+		for(int i = 0;i<n;i++) {
+			array[i] = Integer.parseInt(st.nextToken());
+		}
+		int ans = 0;
+		for(int i = 0;i<n;i++) {
+			int sum = array[i];
+			if(sum==m)ans++;
+			for(int j = i+1;j<n;j++) {
+				sum = sum + array[j];
+				if(sum==m) {
+					ans++;
+					break;
+				}
+			}
+		}
+		System.out.println(ans);
+	}
+
+}
