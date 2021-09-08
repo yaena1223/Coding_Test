@@ -1,0 +1,40 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class 정사각형찾기 {
+
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		st = new StringTokenizer(br.readLine());
+		int n = Integer.parseInt(st.nextToken());
+		int m = Integer.parseInt(st.nextToken());
+		int[][]array = new int[n][m];
+		for(int i = 0;i<n;i++) {
+			String num = br.readLine();
+			for(int j = 0;j<m;j++) {
+				array[i][j] = Integer.parseInt(num.substring(j,j+1));
+			}
+		}
+		int max =1 ;
+		int area = 1;
+		
+		for(int i = 0;i<n;i++) {
+			for(int j = 0;j<m;j++) {
+				for(int z = 1;z<n;z++) {//z는 간격
+					if(i+z>=n || j+z>=m)continue;
+					if(array[i][j]==array[i][j+z]&& array[i][j+z]==array[i+z][j]&&array[i+z][j]==array[i+z][j+z]) {
+						area = (z+1)*(z+1);
+						if(max<area)max = area;
+					}
+				}
+			}
+		}
+		System.out.println(max);
+	}
+
+}
