@@ -1,44 +1,47 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Stack;
-public class 스택 {
+import java.util.StringTokenizer;
 
-	public static void main(String[] args) {
+public class _4_스택 {
+
+	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
-
-		Stack <Integer> stack = new Stack<Integer>();
-		Scanner sc = new Scanner(System.in);
-		String str ="";
-		while(true) {
-			str = sc.next();
-			if(str.equals("end"))break;
-			else if(str.equals("top")) {
-				if(stack.empty())System.out.println(-1);
-				else {
-					System.out.println(stack.peek());
+		Stack<Integer>stack = new Stack<Integer>();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
+		String input = "";
+		while(!input.equals("end")) {
+			st = new StringTokenizer(br.readLine());
+			input = st.nextToken();
+			if(input.equals("push")) {
+				int n = Integer.parseInt(st.nextToken());
+				stack.push(n);
+				sb.append(n+"\n");
+			}
+			if(input.equals("top")) {
+				if(stack.size()==0) {
+					sb.append("-1\n");
 				}
-				
+				else sb.append(stack.peek()+"\n");
 			}
-			else if(str.equals("size"))
-				System.out.println(stack.size());
-			else if(str.equals("empty")) {
-				if(stack.empty())System.out.println(1);
-				else System.out.println(0);
+			if(input.equals("size")) {
+				sb.append(stack.size()+"\n");
 			}
-			else if (str.equals("pop")) {
-				if(stack.empty())System.out.println(-1);
-				else {
-					int n = stack.peek();
-					stack.pop();
-					System.out.println(n);
-				}
-				
+			if(input.equals("pop")) {
+				if(stack.empty())sb.append("-1\n");
+				else{sb.append(stack.peek()+"\n");
+				stack.pop();}
 			}
-			else if(str.equals("push")) {
-					int n = sc.nextInt();
-					stack.push(n);
-					System.out.println(n);
-				}
+			if(input.equals("empty")) {
+				if(stack.empty()) sb.append("1\n");
+				else sb.append("0\n");
 			}
+			
 		}
+		System.out.println(sb.toString());
 	}
 
+}
