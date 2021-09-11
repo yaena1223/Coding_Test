@@ -1,0 +1,41 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.StringTokenizer;
+
+public class _5_체육대회 {
+
+	public static void main(String[]args) throws IOException{
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		ArrayList<Integer> A = new ArrayList<Integer>();
+		ArrayList<Integer> B = new ArrayList<Integer>();
+		int n = Integer.parseInt(br.readLine());
+		st = new StringTokenizer(br.readLine());
+		int num;
+		for(int i = 0;i<n;i++) {
+			num = Integer.parseInt(st.nextToken());
+			A.add(num);
+		}
+		st = new StringTokenizer(br.readLine());
+		for(int j = 0;j<n;j++) {
+			num = Integer.parseInt(st.nextToken());
+			B.add(num);
+		}
+		Collections.sort(A);
+		Collections.sort(B);
+		int ans = 0; int pnt = 0;
+		for(int i = 0;i<n;i++) {
+			while(pnt<n && A.get(i)>=B.get(pnt)) {
+				pnt++;
+			}
+			if(pnt==n) break;
+			ans++; pnt++;
+		}
+		System.out.println(ans);
+	}
+	
+}
