@@ -1,0 +1,34 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.StringTokenizer;
+
+public class _8_싸이클 {
+	static int visited[];
+	static int n;
+	static int p;
+	static int ans;
+	public static void main(String[] args) throws IOException {
+		// TODO Auto-generated method stub
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		n = Integer.parseInt(st.nextToken());
+		p = Integer.parseInt(st.nextToken());
+		visited = new int[n+1];
+		Arrays.fill(visited, 0);
+		dfs(n,1);
+		System.out.println(ans);
+	}
+	static void dfs(int x, int r) {
+		if(visited[x]==0) {
+			visited[x] = r;
+			dfs((x*n)%p,r+1);
+		}
+		else {
+			ans = r - visited[x];
+		}
+	}
+
+}
