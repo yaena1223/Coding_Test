@@ -9,7 +9,7 @@ public class 갈수없는도시찾기 {
 	static ArrayList<ArrayList<Integer>>array;
 	static boolean visited[];
 	public static void main(String[] args) throws IOException{
-		// TODO Auto-generated method stub
+
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
