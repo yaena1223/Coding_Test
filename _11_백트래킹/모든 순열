@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class _11_모든순열 {
+	static int n;
+	static int array[];
+	static boolean visited[];
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		n= sc.nextInt();
+		array = new int[n+1];
+		visited = new boolean[n+1];
+		dfs(1);
+	}
+	static void dfs(int x) {
+		if(x==n+1) {
+			for(int i = 1;i<=n;i++) {
+				System.out.print(array[i]+" ");
+			}
+			System.out.println();
+			return;
+		}
+		
+		for(int i = 1;i<=n;i++) {
+			if(!visited[i]) {
+				array[x] = i;
+				visited[i] = true;
+				dfs(x+1);
+				array[x] = 0;
+				visited[i] = false;
+			}
+		}
+	}
+
+}
